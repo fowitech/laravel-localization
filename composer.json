@@ -1,0 +1,44 @@
+{
+    "name": "fowitech/laravel-localization",
+    "description": "Easy localization for Laravel",
+    "keywords": ["localization", "laravel", "php"],
+    "homepage": "https://github.com/fowitech/laravel-localization",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fowitech",
+            "email": "info@fowitech.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/framework": "~5.2.0||~5.3.0||~5.4.0||~5.5.0||~5.6.0||~5.7.0||~5.8.0||^6.0||^7.0||^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench-browser-kit": "~3.4|~3.8|~4.0",
+        "phpunit/phpunit": "6.0.*|^8.0"
+    },
+    "suggest": {
+        "ext-intl": "*"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fowitech\\Localization\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fowitech\\Localization\\LocalizationServiceProvider"
+            ],
+            "aliases": {
+                "Localization": "Fowitech\\Localization\\Facades\\Localization"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
