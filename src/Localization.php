@@ -486,7 +486,7 @@ class Localization
                 }
             }
         }else{
-            $data = $this->database->table('languages')->orderBy('order')->where('status', 1)->get();
+            $data = $this->database->connection(config('localization.database_connection'))->table(config('localization.table_name'))->orderBy('sort')->where('status', 1)->get();
             if($data){
                 foreach ($data as $item) {
                     $locales[$item->code] = array(
@@ -496,7 +496,7 @@ class Localization
                         'script' => $item->script,
                         'native' => $item->native,
                         'regional' => $item->regional,
-                        // 'image' => $item->image,
+                        'image' => $item->image,
                     );
                 }
             }

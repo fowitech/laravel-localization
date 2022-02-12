@@ -13,8 +13,15 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::connection(config('localization.database_connection'))->create(config('localization.table_name'), function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->default(true);
+            $table->string('name');
+            $table->string('script')->nullable();
+            $table->string('native')->nullable();
+            $table->string('regional')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('sort')->default(1);
             $table->timestamps();
         });
     }

@@ -13,9 +13,9 @@ class LocalizationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('localization.php'),
-        ], 'config');
+        if ($this->app->runningInConsole()) {
+            $this->publishResources();
+        }
     }
 
     /**
@@ -58,19 +58,34 @@ class LocalizationServiceProvider extends ServiceProvider
         $this->app->alias(Localization::class, 'localization');
     }
 
+    protected function publishResources()
+    {
+        $this->publishes([
+            __DIR__.'/../config/config.php' => config_path('localization.php'),
+        ], 'config');
+
+        $this->publishes([
+            __DIR__ . '/../database/migrations/2021_11_28_214908_create_languages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_languages_table.php'),
+        ], 'migrations');
+
+        $this->publishes([
+            __DIR__ . '/../database/seeders/LanguageTableSeeder.php' => database_path('seeders/LanguageTableSeeder.php'),
+        ], 'seeders');
+    }
+
     /**
      * Registers route caching commands.
      */
     protected function registerCommands()
     {
-        $this->app->singleton('localizationroutecache.cache', Commands\RouteTranslationsCacheCommand::class);
-        $this->app->singleton('localizationroutecache.clear', Commands\RouteTranslationsClearCommand::class);
-        $this->app->singleton('localizationroutecache.list', Commands\RouteTranslationsListCommand::class);
+        $this->app->singleton('route.trans.cache', Commands\RouteTranslationsCacheCommand::class);
+        $this->app->singleton('route.trans.clear', Commands\RouteTranslationsClearCommand::class);
+        $this->app->singleton('route.trans.list', Commands\RouteTranslationsListCommand::class);
 
         $this->commands([
-            'localizationroutecache.cache',
-            'localizationroutecache.clear',
-            'localizationroutecache.list',
+            'route.trans.cache',
+            'route.trans.clear',
+            'route.trans.list',
         ]);
     }
 }

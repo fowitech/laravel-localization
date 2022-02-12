@@ -5,6 +5,12 @@ return [
     // Driver types file, db
     'driver' => 'file',
 
+    // Table name
+    'table_name' => 'languages',
+
+    // If driver type is db, select connection type
+    'database_connection' => env('LOCALIZATION_DB_CONNECTION'),
+
     // Uncomment the languages that your site supports - or add new ones.
     // These are sorted by the native name, which is the order you might show them in a language selector.
     // Regional languages are sorted by their base language, so "British English" sorts as "English, British"
