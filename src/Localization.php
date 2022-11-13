@@ -246,6 +246,16 @@ class Localization
     }
 
     /**
+     * Returns an flag Url to $locale.
+     * @return string
+     */
+    public function getCurrentLocaleImage()
+    {
+        $locale = $this->getCurrentLocale();
+        return url('/vendor/localization/flags/'.$locale.'.png');
+    }
+
+    /**
      * Returns an URL adapted to $locale.
      *
      *
@@ -481,7 +491,7 @@ class Localization
                         'script' => $item['script'],
                         'native' => $item['native'],
                         'regional' => $item['regional'],
-                        // 'image' => $item->image,
+                        'image' => url('/vendor/localization/flags/'.$key.'.png'),
                     );
                 }
             }
@@ -496,7 +506,7 @@ class Localization
                         'script' => $item->script,
                         'native' => $item->native,
                         'regional' => $item->regional,
-                        'image' => $item->image,
+                        'image' => url('/vendor/localization/flags/'.$item->code.'.png'),
                     );
                 }
             }

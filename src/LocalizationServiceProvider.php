@@ -64,6 +64,10 @@ class LocalizationServiceProvider extends ServiceProvider
             __DIR__.'/../config/config.php' => config_path('localization.php'),
         ], 'config');
 
+        $this->publishes([
+            __DIR__.'/../flags' => public_path('vendor/localization/flags'),
+        ], 'public');
+
        /* $this->publishes([
             __DIR__ . '/../database/migrations/2021_11_28_214908_create_languages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_languages_table.php'),
         ], 'migrations');
