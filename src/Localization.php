@@ -252,7 +252,7 @@ class Localization
     public function getCurrentLocaleImage()
     {
         $locale = $this->getCurrentLocale();
-        return url('/vendor/localization/flags/'.$locale.'.png');
+        return url('/vendor/localization/flags/'.$locale.'.svg');
     }
 
     /**
