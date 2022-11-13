@@ -491,7 +491,7 @@ class Localization
                         'script' => $item['script'],
                         'native' => $item['native'],
                         'regional' => $item['regional'],
-                        'image' => url('/vendor/localization/flags/'.$key.'.png'),
+                        'image' => url('/vendor/localization/flags/'.$key.'.svg'),
                     );
                 }
             }
@@ -506,7 +506,7 @@ class Localization
                         'script' => $item->script,
                         'native' => $item->native,
                         'regional' => $item->regional,
-                        'image' => url('/vendor/localization/flags/'.$item->code.'.png'),
+                        'image' => url('/vendor/localization/flags/'.$item->code.'.svg'),
                     );
                 }
             }
