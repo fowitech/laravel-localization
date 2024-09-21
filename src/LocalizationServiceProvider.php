@@ -2,6 +2,11 @@
 
 namespace Fowitech\Localization;
 
+use Fowitech\Localization\Middleware\LocaleCookieRedirect;
+use Fowitech\Localization\Middleware\LocaleSessionRedirect;
+use Fowitech\Localization\Middleware\LocalizationRedirectFilter;
+use Fowitech\Localization\Middleware\LocalizationRoutes;
+use Fowitech\Localization\Middleware\LocalizationViewPath;
 use Illuminate\Support\ServiceProvider;
 
 class LocalizationServiceProvider extends ServiceProvider
@@ -16,6 +21,12 @@ class LocalizationServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishResources();
         }
+
+        $this->app['router']->aliasMiddleware('localize', LocalizationRoutes::class);
+        $this->app['router']->aliasMiddleware('localizationRedirect', LocalizationRedirectFilter::class);
+        $this->app['router']->aliasMiddleware('localeSessionRedirect', LocaleSessionRedirect::class);
+        $this->app['router']->aliasMiddleware('localeCookieRedirect', LocaleCookieRedirect::class);
+        $this->app['router']->aliasMiddleware('localeViewPath', LocalizationViewPath::class);
     }
 
     /**
